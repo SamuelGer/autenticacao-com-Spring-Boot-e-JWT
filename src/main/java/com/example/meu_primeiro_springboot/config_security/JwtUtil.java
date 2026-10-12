@@ -16,7 +16,7 @@ public class JwtUtil {
     private String secret;
 
     private SecretKey secretKey;
-    private static final long EXPIRATION_TIME = 86400000; //86400000 = 24 Horas de duração do token
+    private static final long EXPIRATION_TIME = 3600; //3600 = 1 Hora de duração do token
 
     @PostConstruct
     private void init() {
@@ -42,7 +42,7 @@ public class JwtUtil {
         }
     }
     //Salva o username para quem é o usuario e o tempo que ele ficará logado.
-    //Ex: Sites onde o cliente acessa a conta e depois que ele retornar para o site antes da expiração do token, ele ficara logado
+    //Ex: Sites onde o cliente acessa a conta e depois que ele retornar para o site antes da expiração do token, ele ficara logado(Cookies)
     public String extractUsername(String token){
         return Jwts.parser().verifyWith(secretKey)
                 .build().parseSignedClaims(token).getPayload()

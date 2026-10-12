@@ -36,4 +36,7 @@ build/
 .env
 *.env
 application.properties
-
+.mvn
+mvnw
+.gitattributes
+mvnw.cmd
