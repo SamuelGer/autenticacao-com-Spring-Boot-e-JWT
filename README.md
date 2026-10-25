@@ -12,7 +12,7 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 - Spring Boot 4.0.4
 - Spring Security
 - JWT (JJWT 0.12.x)
-- MySQL Database (banco em memória)
+- MySQL Database
 - Lombok
 - Maven
 
