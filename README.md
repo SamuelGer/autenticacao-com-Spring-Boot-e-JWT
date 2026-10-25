@@ -29,11 +29,11 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 
 ```
 src/main/java/com/example/meu_primeiro_springboot/
-├── controller/        # AuthController, UserController
+├── controller/        # AuthController, UserController, AdminController
 ├── service/           # UserService
-├── model/             # User
+├── model/             # User, Roles
 ├── repository/        # UserRepository
 ├── DTO/               # LoginDTO, RegisterDTO
-├── config_security/   # SecurityConfig, JwtFilter, JwtUtil
+├── config_security/   # SecurityConfig, JwtFilter, JwtUtil, DataInitializer
 └── exceptions/        # GlobalExceptionHandler, exceções customizadas
 ```
