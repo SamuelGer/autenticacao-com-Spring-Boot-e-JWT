@@ -39,7 +39,7 @@ public class UserService {
     public String login(LoginDTO login){
         Optional<User> user = userRepository.findByUsername(login.getUsername());
         if(user.isPresent() && passwordEncoder.matches(login.getPassword(), user.get().getPassword())){
-        return jwtConfig.generateToken(user.get().getUsername());
+        return jwtConfig.generateToken(user.get().getUsername(), user.get().getRole());
         } else{
             throw new InvalidCredentialsException("Credenciais inválidas.");
         }

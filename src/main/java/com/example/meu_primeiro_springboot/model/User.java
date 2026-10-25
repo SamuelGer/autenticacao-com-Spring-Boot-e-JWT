@@ -2,32 +2,38 @@ package com.example.meu_primeiro_springboot.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "usuarios")
 public class User {
-    @Getter
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
-    @Setter
     @Column(unique = true, nullable = false )
     private String username;
 
-    @Getter
-    @Setter
     @Column(nullable = false)
     private String password;
 
-    public User(){
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Roles role;
 
     public User(String username, String password){
         this.username = username;
         this.password = password;
+        this.role = Roles.USER;
+    }
+
+    public User(String username, String password, Roles role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 }

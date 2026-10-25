@@ -28,7 +28,8 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(basic -> basic.disable())
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/register", "/h2-console/**", "/auth/login").permitAll()
+                .requestMatchers("/v1/auth/register", "/v1/auth/login").permitAll()
+                .requestMatchers("/v1/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 )
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()));

@@ -1,5 +1,6 @@
 package com.example.meu_primeiro_springboot.config_security;
 
+import com.example.meu_primeiro_springboot.model.Roles;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -16,7 +17,7 @@ public class JwtUtil {
     private String secret;
 
     private SecretKey secretKey;
-    private static final long EXPIRATION_TIME = 3600; //3600 = 1 Hora de duração do token
+    private static final long EXPIRATION_TIME = 3600000; //360000 = 1 Hora de duração do token
 
     @PostConstruct
     private void init() {
@@ -25,9 +26,10 @@ public class JwtUtil {
     }
 
     //Gera e retorna o token pro cliente.
-    public String generateToken(String username){
+    public String generateToken(String username, Roles role){
         return Jwts.builder()
                 .subject(username)
+                .claim("role", role)
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(secretKey)
                 .compact();
@@ -38,6 +40,7 @@ public class JwtUtil {
             Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token);
             return true;
         } catch (JwtException e) {
+            System.out.println("Erro no token: " + e.getMessage());
             return false;
         }
     }
@@ -47,5 +50,11 @@ public class JwtUtil {
         return Jwts.parser().verifyWith(secretKey)
                 .build().parseSignedClaims(token).getPayload()
                 .getSubject();
+    }
+
+    public String extractRole(String token){
+        return Jwts.parser().verifyWith(secretKey)
+                .build().parseSignedClaims(token).getPayload()
+                .get("role", String.class);
     }
 }
