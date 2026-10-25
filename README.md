@@ -23,6 +23,7 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 | POST | `/auth/register` | Cadastro de novo usuário | Não |
 | POST | `/auth/login` | Login e geração do token JWT | Não |
 | GET | `/user/me` | Retorna dados do usuário logado | Sim (Bearer Token) |
+| GET | `/admin/dashboard` | Área administrativa | Sim (Bearer Token + ADMIN) |
 
 ##  Estrutura do projeto
 
