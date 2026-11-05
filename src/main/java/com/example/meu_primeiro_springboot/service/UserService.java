@@ -32,12 +32,12 @@ public class UserService {
             throw new SenhasNaoCoincidemException("As senhas não condizem.");
         }
         String encryptPassword = passwordEncoder.encode(register.getPassword());
-        User user = new User(register.getUsername(), encryptPassword);
+        User user = new User(register.getUsername(), encryptPassword, register.getEmail());
         userRepository.save(user);
     }
 
     public String login(LoginDTO login){
-        Optional<User> user = userRepository.findByUsername(login.getUsername());
+        Optional<User> user = userRepository.findByUsernameOrEmail(login.getUsername());
         if(user.isPresent() && passwordEncoder.matches(login.getPassword(), user.get().getPassword())){
         return jwtConfig.generateToken(user.get().getUsername(), user.get().getRole());
         } else{

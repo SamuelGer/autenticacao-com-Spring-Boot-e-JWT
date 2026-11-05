@@ -7,6 +7,8 @@ public class LoginDTO {
     private String username;
     @Getter
     private String password;
+    @Getter
+    private String email;
 
 
 }

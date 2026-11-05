@@ -3,6 +3,7 @@ package com.example.meu_primeiro_springboot.controller;
 import com.example.meu_primeiro_springboot.DTO.LoginDTO;
 import com.example.meu_primeiro_springboot.DTO.RegisterDTO;
 import com.example.meu_primeiro_springboot.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> postRegister(@RequestBody RegisterDTO registerDTO){
+    public ResponseEntity<String> postRegister(@Valid @RequestBody RegisterDTO registerDTO){
         userService.register(registerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("Cadastro efetuado com sucesso! ");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> postLogin(@RequestBody LoginDTO loginDTO){
+    public ResponseEntity<String> postLogin(@Valid @RequestBody LoginDTO loginDTO){
         String acess = userService.login(loginDTO);
 
         if(acess.equals("Credenciais Inválidas.")){

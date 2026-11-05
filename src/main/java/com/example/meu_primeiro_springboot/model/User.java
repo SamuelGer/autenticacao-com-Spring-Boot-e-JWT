@@ -21,19 +21,24 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Roles role;
 
-    public User(String username, String password){
+    public User(String username, String password, String email){
         this.username = username;
         this.password = password;
+        this.email = email;
         this.role = Roles.USER;
     }
 
-    public User(String username, String password, Roles role) {
+    public User(String username, String password, Roles role, String email) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 }
