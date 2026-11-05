@@ -12,7 +12,7 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 - Spring Boot 4.0.4
 - Spring Security
 - JWT (JJWT 0.12.x)
-- H2 Database (banco em memória)
+- MySQL Database
 - Lombok
 - Maven
 
@@ -20,19 +20,21 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 
 | Método | Rota | Descrição | Autenticação |
 |--------|------|-----------|--------------|
+|       | `/v1`  | Primeira versão |        | 
 | POST | `/auth/register` | Cadastro de novo usuário | Não |
 | POST | `/auth/login` | Login e geração do token JWT | Não |
 | GET | `/user/me` | Retorna dados do usuário logado | Sim (Bearer Token) |
+| GET | `/admin/dashboard` | Área administrativa | Sim (Bearer Token + ADMIN) |
 
 ##  Estrutura do projeto
 
 ```
 src/main/java/com/example/meu_primeiro_springboot/
-├── controller/        # AuthController, UserController
+├── controller/        # AuthController, UserController, AdminController
 ├── service/           # UserService
-├── model/             # User
+├── model/             # User, Roles
 ├── repository/        # UserRepository
 ├── DTO/               # LoginDTO, RegisterDTO
-├── config_security/   # SecurityConfig, JwtFilter, JwtUtil
+├── config_security/   # SecurityConfig, JwtFilter, JwtUtil, DataInitializer
 └── exceptions/        # GlobalExceptionHandler, exceções customizadas
 ```
