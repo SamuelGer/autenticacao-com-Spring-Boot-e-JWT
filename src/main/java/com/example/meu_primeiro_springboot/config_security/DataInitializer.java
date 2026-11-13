@@ -23,7 +23,7 @@ public class DataInitializer implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        if(userRepository.findByUsernameOrEmail("admin").isEmpty()){
+        if(userRepository.findByUsername("admin").isEmpty()){
             User user = new User("admin", passwordEncoder.encode(adminPassword), Roles.ADMIN, "admin123@email.com");
             userRepository.save(user);
         }

@@ -2,15 +2,14 @@ package com.example.meu_primeiro_springboot.controller;
 
 import com.example.meu_primeiro_springboot.DTO.LoginDTO;
 import com.example.meu_primeiro_springboot.DTO.RegisterDTO;
+import com.example.meu_primeiro_springboot.DTO.UpdateUserDTO;
 import com.example.meu_primeiro_springboot.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/auth")
@@ -37,5 +36,12 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(acess);
         }
     }
+    @PatchMapping("/updateUser")
+    public ResponseEntity<String> patchUpdateUser(Authentication authentication, @Valid @RequestBody UpdateUserDTO updateUserDTO){
+      String update = userService.alter(authentication.getName(), updateUserDTO);
+      return ResponseEntity.ok(update);
+    }
+
+
 
 }

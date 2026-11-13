@@ -1,14 +1,13 @@
 package com.example.meu_primeiro_springboot.DTO;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 public class LoginDTO {
     @Getter
-    private String username;
+    @NotBlank
+    private String identifier;
     @Getter
+    @NotBlank
     private String password;
-    @Getter
-    private String email;
-
-
 }
