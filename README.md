@@ -25,6 +25,7 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 | POST | `/auth/login` | Login e geração do token JWT | Não |
 | GET | `/user/me` | Retorna dados do usuário logado | Sim (Bearer Token) |
 | GET | `/admin/dashboard` | Área administrativa | Sim (Bearer Token + ADMIN) |
+| PATCH | `/auth/updateUser`|  Atualiza username, email ou senha do usuário logado e retorna um novo token | Sim (Bearer Token) |
 
 ##  Estrutura do projeto
 
@@ -34,7 +35,7 @@ src/main/java/com/example/meu_primeiro_springboot/
 ├── service/           # UserService
 ├── model/             # User, Roles
 ├── repository/        # UserRepository
-├── DTO/               # LoginDTO, RegisterDTO
+├── DTO/               # LoginDTO, RegisterDTO, UpdateUserDTO
 ├── config_security/   # SecurityConfig, JwtFilter, JwtUtil, DataInitializer
 └── exceptions/        # GlobalExceptionHandler, exceções customizadas
 ```
