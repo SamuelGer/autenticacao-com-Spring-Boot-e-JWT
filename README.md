@@ -21,7 +21,7 @@ Projeto desenvolvido como aprendizado prático de desenvolvimento back-end.
 | Método | Rota | Descrição | Autenticação |
 |--------|------|-----------|--------------|
 | POST | `/v1/auth/register` | Cadastro de novo usuário | Não |
-| POST | `/v1/auth/login` | Login e geração do token JWT | Não |
+| POST | `/v1/auth/login` | Login com email ou username("identifier": no JSON) e geração do token JWT | Não |
 | GET | `/v1/user/me` | Retorna dados do usuário logado | Sim (Bearer Token) |
 | GET | `/v1/admin/dashboard` | Área administrativa | Sim (Bearer Token + ADMIN) |
 | PATCH | `/v1/auth/updateUser`|  Atualiza username, email ou senha do usuário logado e retorna um novo token | Sim (Bearer Token) |
